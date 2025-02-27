@@ -4,15 +4,26 @@
 
 int mas[1000000] = {};
 
-bool linear_func(int start, int end, int size, int x){
-
+void random_lin_mas(int size){
     std::default_random_engine rng((int)time(0));
     std::uniform_int_distribution<unsigned>dstr(0, size - 1);
 
     for (int i = 0; i < size; ++i) {
         mas[i] = dstr(rng);
     }
+}
 
+void random_bin_mas(int size){
+    std::default_random_engine rng((int)time(0));
+    std::uniform_int_distribution<unsigned>dstr(0, 10);
+    mas[0] = dstr(rng);
+    for (int i = 1; i < size; ++i) {
+        mas[i] = mas[i - 1] + dstr(rng);
+    }
+
+}
+
+bool linear_func(int start, int end, int size, int x){
     for (int i = 0; i < size; ++i) {
         if (mas[i] == x) {
             return true;
@@ -22,13 +33,6 @@ bool linear_func(int start, int end, int size, int x){
 }
 
 bool bin_func(int start, int end, int size, int x){
-    std::default_random_engine rng((int)time(0));
-    std::uniform_int_distribution<unsigned>dstr(0, 10);
-    mas[0] = dstr(rng);
-    for (int i = 1; i < size; ++i) {
-        mas[i] = mas[i - 1] + dstr(rng);
-    }
-
     while (end >= start) {
         size = end - start + 1;
         int mid = start + size/2;
@@ -51,29 +55,26 @@ float searching_time(bool(*searching)(int start, int end, int size, int x), int 
         searching(0, size - 1, size, x);
     auto end = std::chrono::steady_clock::now();
     auto time_span = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
-    return ((time_span.count() + 0.0) / 100);
+    return ((time_span.count() + 0.0)/100);
 }
 
-void data_max(bool(*searching)(int start, int end, int size, int x)){
-    for (int size = 100; size <= 1000000; size+=9999) {
-        std::cout << size << ' ' << searching_time(searching, size, -1) << '\n';
+void data_max(bool(*searching)(int start, int end, int size, int x), void(*rand_mas)(int size)){
+    for (int size = 100; size <= 1000000; size+=10000) {
+        rand_mas(size);
+        std::cout << size << ' ' << searching_time(searching,size, -1)<< '\n';
     }
     std::cout << '\n';
 }
 
-void data_average(bool(*searching)(int start, int end, int size, int x)){
+void data_average(bool(*searching)(int start, int end, int size, int x), void(*rand_mas)(int size)){
     srand((int)time(0));
-    int er = 30;
-    for (int size = 100; size <= 1000000; size+=9999) {
-        float s = 0;
-        for (int u = 0; u < er; ++u) {
-            s += searching_time(searching, size, rand() % size);
-        }
-        std::cout << size << ' ' << s/(er + 0.0) << '\n';
+    for (int size = 100; size <= 1000000; size+=10000) {
+        rand_mas(size);
+        std::cout << size << ' ' << searching_time(searching, size, rand() % size) << '\n';
     }        
 }
 
 int main() {
-    data_max(bin_func);
+    data_average(linear_func, random_lin_mas);
 }
     
