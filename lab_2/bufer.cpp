@@ -20,7 +20,7 @@ int *func_2(int *mas, size_t size,size_t num, int new_el){
             new_mas[i] = mas[i];
         }
         delete[] mas;
-        return new_mas;
+        mas = new_mas;
     }
     mas[size] = new_el;
     return mas;
@@ -33,7 +33,7 @@ int *func_3(int *mas, size_t size,size_t num, int new_el){
             new_mas[i] = mas[i];
         }
         delete[] mas;
-        return new_mas;
+        mas = new_mas;
     }
     mas[size] = new_el;
     return mas;
