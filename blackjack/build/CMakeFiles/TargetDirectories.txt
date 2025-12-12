@@ -1,0 +1,3 @@
+/home/zlatoslava/lpr_inf_labs/blackjack/build/CMakeFiles/blackjack.dir
+/home/zlatoslava/lpr_inf_labs/blackjack/build/CMakeFiles/edit_cache.dir
+/home/zlatoslava/lpr_inf_labs/blackjack/build/CMakeFiles/rebuild_cache.dir
