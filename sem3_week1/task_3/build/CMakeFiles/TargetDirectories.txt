@@ -1,0 +1,3 @@
+/home/zlatoslava/lpr_inf_labs/sem3_week1/task_3/build/CMakeFiles/trigonometry.dir
+/home/zlatoslava/lpr_inf_labs/sem3_week1/task_3/build/CMakeFiles/edit_cache.dir
+/home/zlatoslava/lpr_inf_labs/sem3_week1/task_3/build/CMakeFiles/rebuild_cache.dir

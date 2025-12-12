@@ -1,0 +1,1 @@
+/usr/bin/g++ CMakeFiles/trigonometry.dir/main.cpp.o CMakeFiles/trigonometry.dir/src/ans_handler.cpp.o CMakeFiles/trigonometry.dir/src/my_math.cpp.o -o /home/zlatoslava/lpr_inf_labs/sem3_week1/task_3/project/bin/trigonometry 
